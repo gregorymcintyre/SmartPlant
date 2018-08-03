@@ -24,14 +24,23 @@ void setup() {
 }
 void loop() {
   int val;
-  val = analogRead(0); //connect sensor to Analog 0
-  //Serial.println(val); //print the value to serial port
+  val = read();
+  compare(val);
+  delay(2000);
+}
 
-  if (val<=300){                      //if soil is dry
+int read () {
+  int val;
+  val = analogRead(0);  //read from pin 0
+  //Serial.println(val); //print the value to serial port
+  return val;
+}
+
+void compare(int val){
+    if (val<=300){                      //if soil is dry
     digitalWrite(LED_BUILTIN, HIGH);
   }else{
     digitalWrite(LED_BUILTIN, LOW);
   }
-  
-  delay(2000);
 }
+
